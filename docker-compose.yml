@@ -1,11 +1,15 @@
 services:
-  app:
+  oci:
+    container_name: oci
     build:
       context: .
-      dockerfile: ./docker/Dockerfile
-    container_name: oci
-    ports:
-      - 8080:8080
+      dockerfile: ./docker/oci/Dockerfile
+      args:
+        - USER_NAME=${USER_NAME:-oci}
+        - GROUP_NAME=${GROUP_NAME:-oci}
+        - USER_ID=${USER_ID:-1000}
+        - GROUP_ID=${GROUP_ID:-1000}
     volumes:
       - ./app:/app
+      - ./data/oci:/home/oci/.oci
     working_dir: /app
