@@ -9,6 +9,7 @@ services:
         - GROUP_NAME=${GROUP_NAME:-oci}
         - USER_ID=${USER_ID:-1000}
         - GROUP_ID=${GROUP_ID:-1000}
+        - NODE_VERSION=${NODE_VERSION:-24}
     volumes:
       - ./app:/app
       - ./data/oci:/home/oci/.oci
