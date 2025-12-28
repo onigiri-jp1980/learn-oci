@@ -11,6 +11,10 @@ services:
         - GROUP_ID=${GROUP_ID:-1000}
         - NODE_VERSION=${NODE_VERSION:-24}
     volumes:
-      - ./app:/app
+      - ./src:/app
       - ./data/oci:/home/oci/.oci
+    environment:
+      - TF_VAR_region=${OCI_REGION:-ap-tokyo-1}
+      - TF_VAR_tenancy_ocid=${OCI_TENANCY_OCID:-ocid1.tenancy.oc1..yourtenancyocid}
+      - TF_VAR_user_ocid=${OCI_USER_OCID:-ocid1.user.oc1..youruserocid}
     working_dir: /app
