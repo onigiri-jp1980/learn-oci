@@ -1,7 +1,7 @@
 FROM ghcr.io/opentofu/opentofu:minimal AS tofu
 
 FROM python:3.14-slim AS base
-RUN set -xe && apt update && apt install -y adduser sudo curl
+RUN set -xe && apt update && apt install -y adduser sudo curl make
 
 FROM base AS builder
 ARG USER_ID=1000

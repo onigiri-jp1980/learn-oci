@@ -12,9 +12,21 @@ services:
         - NODE_VERSION=${NODE_VERSION:-24}
     volumes:
       - ./src:/app
-      - ./data/oci:/home/oci/.oci
+      - ./data/oci:/home/${USER_NAME:-oci}/.oci
+      - ./data/terraform:/home/${USER_NAME:-oci}/.terraform
     environment:
+      - AWS_REGION=${OCI_REGION:-ap-tokyo-1}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-youraccesskeyid}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-yoursecretaccesskey}
+      - TOFU_PLUGIN_CACHE_DIR=/home/${USER_NAME:-oci}/.terraform/plugins-cache
+      - TF_DATA_DIR=/home/${USER_NAME:-oci}/.terraform
+      - TF_BACKEND_BUCKET=${TF_BACKEND_BUCKET:-backend-bucket}
+      - OCI_REGION=${OCI_REGION:-ap-tokyo-1}
+      - TF_VAR_backend_bucket=${TF_BACKEND_BUCKET:-backend-bucket}
       - TF_VAR_region=${OCI_REGION:-ap-tokyo-1}
-      - TF_VAR_tenancy_ocid=${OCI_TENANCY_OCID:-ocid1.tenancy.oc1..yourtenancyocid}
-      - TF_VAR_user_ocid=${OCI_USER_OCID:-ocid1.user.oc1..youruserocid}
+      - TF_VAR_key_file=${OCI_KEY_FILE:-/home/${USER_NAME:-oci}/.oci/config}
+      - TF_VAR_tenancy_ocid=${OCI_TENANCY_ID:-ocid1.tenancy.oc1..yourtenancyocid}
+      - TF_VAR_compartment_id=${OCI_COMPARTMENT_ID:-ocid1.compartment.oc1..yourcompartmentocid}
+      - TF_VAR_user_ocid=${OCI_USER_ID:-ocid1.user.oc1..youruserocid}
+      - TF_VAR_os_namespace=${OCI_OS_NAMESPACE:-yournamespace}
     working_dir: /app
