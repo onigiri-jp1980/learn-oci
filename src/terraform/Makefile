@@ -8,18 +8,27 @@ ifeq ($(shell which tofu),"")
 CMD = terraform
 endif
 
+bucket:
+	python make_backend.py
+.PHONY: bucket
+
 init:
 	cd $(MODULE) && $(CMD) init $(ARGS) \
 		-backend-config="bucket=$(TF_BACKEND_BUCKET)" \
 		-backend-config="key=$(MODULE)/terraform.tfstate" \
 		-backend-config="region=$(OCI_REGION)" \
-		-backend-config="endpoint=https://$(TF_VAR_os_namespace).compat.objectstorage.$(OCI_REGION).oraclecloud.com" \
+		-backend-config="endpoint=https://$(OCI_OS_NAMESPACE).compat.objectstorage.$(OCI_REGION).oraclecloud.com" \
 		-backend-config="skip_region_validation=true" \
 		-backend-config="skip_credentials_validation=true" \
 		-backend-config="skip_requesting_account_id=true" \
 		-backend-config="skip_metadata_api_check=true" \
+		-backend-config="force_path_style=true" \
 		-reconfigure
 .PHONY: init
+
+validate:
+	cd $(MODULE) && $(CMD) validate $(ARGS)
+.PHONY: validate
 
 plan:
 	cd $(MODULE) && tofu plan $(ARGS)
@@ -41,6 +50,7 @@ new:
 help:
 	@echo "Usage: make [MODULE=<module>] [ARGS=<args>] Target"
 	@echo "Target:"
+	@echo "  bucket: バックエンド用のバケットを作成します"
 	@echo "  init: モジュールを初期化します"
 	@echo "  plan: 適用内容を確認します"
 	@echo "  apply: 変更を適用します"

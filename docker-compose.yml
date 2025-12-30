@@ -22,6 +22,7 @@ services:
       - TF_DATA_DIR=/home/${USER_NAME:-oci}/.terraform
       - TF_BACKEND_BUCKET=${TF_BACKEND_BUCKET:-backend-bucket}
       - OCI_REGION=${OCI_REGION:-ap-tokyo-1}
+      - OCI_OS_NAMESPACE=${OCI_OS_NAMESPACE:-yournamespace}
       - TF_VAR_backend_bucket=${TF_BACKEND_BUCKET:-backend-bucket}
       - TF_VAR_region=${OCI_REGION:-ap-tokyo-1}
       - TF_VAR_key_file=${OCI_KEY_FILE:-/home/${USER_NAME:-oci}/.oci/config}

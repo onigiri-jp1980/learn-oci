@@ -18,11 +18,10 @@ terraform {
 provider "oci" {
   region = var.region
   tenancy_ocid = var.tenancy_ocid
-  compartment_id = var.compartment_id
 }
 
 resource "oci_objectstorage_bucket" "sample" {
   compartment_id = var.compartment_id
   name = "sample"
-  namespace = var.namespace
+  namespace = var.os_namespace
 }
