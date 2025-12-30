@@ -17,8 +17,8 @@ RUN set -xe && \
     mkdir -p /home/${USER_NAME}/.oci && \
     chown -R ${USER_NAME}:root /home/${USER_NAME} && \
     chmod -R 755 /home/${USER_NAME} && \
-    pip install --break-system-packages oci oci-cli 
-
+    pip install --break-system-packages oci oci-cli && \
+    npm install -g osls
 USER ${USER_NAME}
 WORKDIR /app
 ENTRYPOINT ["/bin/bash"]

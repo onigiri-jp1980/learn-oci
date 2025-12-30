@@ -1,0 +1,17 @@
+service:
+  name: oci-fn-fastapi
+
+provider:
+  name: fn
+
+plugins:
+  - serverless-fn
+
+functions:
+  hello:
+    name: hello
+    version: 0.0.1
+    # Fn/OCI Functions の HTTP トリガ（この path は API Gateway ではなく Fn のルート配下）
+    events:
+      - http:
+          path: /call
