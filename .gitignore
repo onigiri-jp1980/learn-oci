@@ -41,3 +41,16 @@ terraform.rc
 # local Environment variables
 .env
 .envrc
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore .DS_Store
+.DS_Store
+
+# Ignore python envs
+venv/
+.venv/
+.env/
+
+**/__pycache__/
