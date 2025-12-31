@@ -28,5 +28,10 @@ $ make build
 
 ### コンテナにログイン
 ```bash
+# 作業ディレクトリ/app(ホスト側:src/)でログイン
 $ make bash
+# 作業ディレクトリ/app/terraform(ホスト側:src/terraform/)でログイン
+$ make terrafrom
+# 作業ディレクトリ/app/severless(ホスト側:src/serverless/)でログイン
+$ make serverless
 ```

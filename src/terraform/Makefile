@@ -44,7 +44,7 @@ destroy:
 
 new:
 	if [ -d $(MODULE) ]; then echo "モジュールがすでに存在します"; exit 1; fi
-	mkdir $(MODULE) && cp base/main.tf $(MODULE)/main.tf
+	mkdir $(MODULE) && cp base/*.tf $(MODULE)/
 .PHONY: new
 
 help:

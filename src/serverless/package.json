@@ -1,0 +1,11 @@
+{
+  "name": "oci-fn-fastapi",
+  "version": "0.0.1",
+  "description": "OCI Functions with Serverless Framework",
+  "private": true,
+  "devDependencies": {
+    "osls": "latest",
+    "serverless-fn": "latest"
+  }
+}
+
